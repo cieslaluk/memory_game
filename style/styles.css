@@ -7,7 +7,9 @@
 body {
     height: 100vh;
     display: flex;
-    background: blue;
+    background-image: url(../images/Pokemon-Lets-Go-mega-evolutions.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .memory_game {
     margin: auto;
@@ -45,4 +47,9 @@ transform: rotateY(180deg)
     border-radius: 5px;
     background: green;
     position: absolute;
+    backface-visibility:hidden;
+}
+
+.front_face {
+    transform: rotateY(180deg)
 }
