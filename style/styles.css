@@ -38,6 +38,10 @@ body {
 transform: rotateY(180deg)
 }
 
+.memory_card.none{
+  visibility: hidden;
+    }
+    
 
 .front_face,
 .back_face {
@@ -45,7 +49,7 @@ transform: rotateY(180deg)
     height: 100%;
     padding: 20px;
     border-radius: 5px;
-    background: green;
+    background: #225187;
     position: absolute;
     backface-visibility:hidden;
 }

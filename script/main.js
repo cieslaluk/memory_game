@@ -3,42 +3,47 @@ let hasFlippedCard = false;
 let lockBoard = false;
 let firstCard, secondCard;
 
-function flipCard(){
-    if(lockBoard) return;
-    if(this === firstCard) false;
+function flipCard() {
+    if (lockBoard) return;
+    if (this === firstCard) false;
 
-this.classList.toggle('flip');
+    this.classList.toggle('flip');
 
-if(!hasFlippedCard){
-    hasFlippedCard = true;
-    firstCard = this;
-} else {
-    secondCard = this;
-
-    if (firstCard.dataset.name === secondCard.dataset.name){
-        firstCard.removeEventListener('click', flipCard);
-        secondCard.removeEventListener('click', flipCard)
-        resetBoard();
+    if (!hasFlippedCard) {
+        hasFlippedCard = true;
+        firstCard = this;
     } else {
-        lockBoard = true;
-        setTimeout(()=>{
-            firstCard.classList.remove('flip');
-            secondCard.classList.remove('flip');
-            
-            resetBoard();
-        }, 1500);
-       
+        secondCard = this;
+
+        if (firstCard.dataset.name === secondCard.dataset.name) {
+            firstCard.removeEventListener('click', flipCard);
+            secondCard.removeEventListener('click', flipCard);
+
+            setTimeout(() => {
+                firstCard.classList.add('none');
+                secondCard.classList.add('none');
+                resetBoard();
+            }, 1000);
+
+        } else {
+            lockBoard = true;
+            setTimeout(() => {
+                firstCard.classList.remove('flip');
+                secondCard.classList.remove('flip');
+                resetBoard();
+            }, 1500);
+
+        }
     }
-}
 };
 
-function resetBoard(){
+function resetBoard() {
     [hasFlippedCard, lockBoard] = [false, false];
     [firstCard, secondCard] = [null, null];
 }
 
-(function shuffle(){
-    CARDS.forEach(card =>{
+(function shuffle() {
+    CARDS.forEach(card => {
         let randomPos = Math.floor(Math.random() * 12);
         card.style.order = randomPos;
     });
